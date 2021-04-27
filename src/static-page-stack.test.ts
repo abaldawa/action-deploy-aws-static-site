@@ -5,7 +5,6 @@ import { StaticPageStack } from "./static-page-stack";
 test("AWS s3 static site template handling 404 routing error", () => {
   const app = new cdk.App();
   const stack = new StaticPageStack(app, "MyTestStack", {
-    fullDomain: "sub.example.com",
     folder: "./images",
     stackName: "MyTestStack",
   });
