@@ -35,7 +35,7 @@ export class StaticPageStack extends cdk.Stack {
           condition: {
             httpErrorCodeReturnedEquals: "404",
           },
-          replaceKey: s3.ReplaceKey.prefixWith("#!"),
+          replaceKey: s3.ReplaceKey.prefixWith("#!/"),
         },
       ],
     });

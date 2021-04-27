@@ -19,7 +19,7 @@ test("AWS s3 static site template handling 404 routing error", () => {
               HttpErrorCodeReturnedEquals: "404",
             },
             RedirectRule: {
-              ReplaceKeyPrefixWith: "#!",
+              ReplaceKeyPrefixWith: "#!/",
             },
           },
         ],
