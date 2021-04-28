@@ -1,4 +1,8 @@
-import { expect as expectCDK, haveResource } from "@aws-cdk/assert";
+import {
+  expect as expectCDK,
+  haveResource,
+  haveResourceLike,
+} from "@aws-cdk/assert";
 import * as cdk from "@aws-cdk/core";
 import { StaticPageStack } from "./static-page-stack";
 
@@ -21,6 +25,25 @@ test("AWS s3 static site template handling 404 routing error", () => {
             RedirectRule: {
               ReplaceKeyPrefixWith: "#!/",
             },
+          },
+        ],
+      },
+    })
+  );
+
+  expectCDK(stack).to(
+    haveResourceLike("AWS::CloudFront::Distribution", {
+      DistributionConfig: {
+        CustomErrorResponses: [
+          {
+            ErrorCode: 404,
+            ResponseCode: 200,
+            ResponsePagePath: "/index.html",
+          },
+          {
+            ErrorCode: 301,
+            ResponseCode: 200,
+            ResponsePagePath: "/index.html",
           },
         ],
       },

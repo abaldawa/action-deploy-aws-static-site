@@ -56,6 +56,18 @@ export class StaticPageStack extends cdk.Stack {
         ],
         comment: `CDN for static page`,
         priceClass: cloudfront.PriceClass.PRICE_CLASS_ALL,
+        errorConfigurations: [
+          {
+            errorCode: 404,
+            responsePagePath: "/index.html",
+            responseCode: 200,
+          },
+          {
+            errorCode: 301,
+            responsePagePath: "/index.html",
+            responseCode: 200,
+          },
+        ],
       }
     );
 
